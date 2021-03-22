@@ -37,7 +37,7 @@ export default function Login(props) {
     } catch(error) {
       // if the login failed -- display a message
       if(error.response.status === 400) {
-        setMessage('bad user name or password')
+        setMessage(error.status.data)
       } else {
         console.error(error)
       }

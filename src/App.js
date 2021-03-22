@@ -15,7 +15,10 @@ function App() {
 
   // deletes the jwt from local storage when the user wants to log out
   const handleLogout = () => {
-    console.log('log user out')
+    if(localStorage.getItem('jwtToken')){
+      localStorage.removeItem('jwtToken')
+      setCurrentUser(null)
+    }
   }
 
   return (
@@ -40,7 +43,7 @@ function App() {
 
           <Route 
             path='/profile'
-            render={ (props) => <Profile {...props} currentUser={ currentUser } setCurrentUser={ setCurrentUser} /> } 
+            render={ (props) => <Profile {...props} handleLogout={handleLogout} currentUser={ currentUser } setCurrentUser={ setCurrentUser} /> } 
           />
 
         </Switch>
